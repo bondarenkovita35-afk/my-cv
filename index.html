@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vitaliia Sivakova – CV</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background: radial-gradient(circle at top, #1f2933, #050811);
+            color: #f9fafb;
+            min-height: 100vh;
+        }
+
+        /* Плавающие “огоньки” на фоне */
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.3), transparent);
+            filter: blur(40px);
+            z-index: -1;
+        }
+
+        body::before {
+            top: -100px;
+            left: -50px;
+        }
+
+        body::after {
+            bottom: -80px;
+            right: -20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .logo {
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        nav {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.5rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            color: #e5e7eb;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(6px);
+        }
+
+        nav a:hover {
+            border-color: #60a5fa;
+            box-shadow: 0 0 12px rgba(96, 165, 250, 0.6);
+            transform: translateY(-1px);
+        }
+
+        /* Hero */
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-text h1 span {
+            color: #60a5fa;
+        }
+
+        .hero-text p {
+            color: #cbd5f5;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .tagline {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #9ca3af;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .btn {
+            border-radius: 999px;
+            padding: 0.7rem 1.4rem;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #60a5fa, #a855f7);
+            color: white;
+            box-shadow: 0 0 14px rgba(96, 165, 250, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -40%;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.4), transparent);
+            transform: skewX(-20deg);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .btn-primary:hover::after {
+            left: 120%;
+            opacity: 1;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px) scale(1.01);
+        }
+
+        .btn-outline {
+            border: 1px solid #9ca3af;
+            background: transparent;
+            color: #e5e7eb;
+        }
+
+        .btn-outline:hover {
+            border-color: #60a5fa;
+            box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .hero-card {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 1.5rem;
+            padding: 1.6rem;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            border: 1px solid transparent;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.4), rgba(168, 85, 247, 0.4));
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .badge {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #9ca3af;
+            margin-bottom: 0.7rem;
+        }
+
+        .hero-card h2 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-card p {
+            font-size: 0.9rem;
+            color: #d1d5db;
+            margin-bottom: 1rem;
+        }
+
+        .hero-card ul {
+            list-style: none;
+            font-size: 0.85rem;
+            color: #9ca3af;
+        }
+
+        .hero-card ul li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 2.5rem;
+        }
+
+        section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h3::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -0.3rem;
+            width: 50%;
+            height: 2px;
+            background: linear-gradient(90deg, #60a5fa, transparent);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: rgba(15, 23, 42, 0.92);
+            border-radius: 1rem;
+            padding: 1.2rem 1.4rem;
+            border: 1px solid rgba(55, 65, 81, 0.9);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.7);
+            border-color: #60a5fa;
+        }
+
+        .card-title {
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .card-subtitle {
+            font-size: 0.8rem;
+            color: #9ca3af;
+            margin-bottom: 0.7rem;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #e5e7eb;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-pill {
+            padding: 0.35rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(31, 41, 55, 1);
+            border: 1px solid rgba(75, 85, 99, 1);
+            font-size: 0.8rem;
+            color: #d1d5db;
+        }
+
+        .timeline {
+            border-left: 2px solid rgba(75, 85, 99, 1);
+            padding-left: 1rem;
+        }
+
+        .timeline-item {
+            margin-bottom: 1.1rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -1.12rem;
+            top: 0.25rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: #60a5fa;
+            box-shadow: 0 0 8px rgba(96, 165, 250, 0.8);
+        }
+
+        .timeline-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .timeline-meta {
+            font-size: 0.8rem;
+            color: #9ca3af;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-desc {
+            font-size: 0.85rem;
+            color: #e5e7eb;
+        }
+
+        .contact-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .contact-info {
+            font-size: 0.9rem;
+            color: #e5e7eb;
+        }
+
+        .contact-info div {
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-info span {
+            color: #9ca3af;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+        }
+
+        footer {
+            margin-top: 2rem;
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-align: center;
+        }
+
+        /* Простая анимация появления */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.7s ease forwards;
+        }
+
+        .fade-in.delay-1 {
+            animation-delay: 0.1s;
+        }
+
+        .fade-in.delay-2 {
+            animation-delay: 0.2s;
+        }
+
+        .fade-in.delay-3 {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Плавный скролл для навигации */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="fade-in delay-1">
+            <div class="logo">VITALIIA SIVAKOVA</div>
+            <nav>
+                <a href="#about">Om mig</a>
+                <a href="#skills">Kompetens</a>
+                <a href="#experience">Erfarenhet</a>
+                <a href="#contact">Kontakt</a>
+            </nav>
+        </header>
+
+        <section class="hero fade-in delay-2">
+            <div class="hero-text">
+                <div class="tagline">Webbutvecklare · Stockholm</div>
+                <h1>Hej, jag är <span>Vitaliia</span></h1>
+                <p>
+                    Motiverad och nyfiken junior webbutvecklare med erfarenhet från lager och logistik.
+                    Jag gillar tydlig struktur, enkla lösningar och att göra teknik lätt att förstå
+                    – även för människor som inte jobbar med IT.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">
+                        Kontakta mig →
+                    </a>
+                    <a href="#experience" class="btn btn-outline">
+                        Se erfarenhet
+                    </a>
+                </div>
+            </div>
+
+            <aside class="hero-card">
+                <div class="badge">Snabb översikt</div>
+                <h2>Fokus just nu</h2>
+                <p>
+                    Studerar Webbutvecklare .NET och bygger upp portfolio med moderna, responsiva hemsidor.
+                </p>
+                <ul>
+                    <li>• Frontend: HTML, CSS, JavaScript (på gång)</li>
+                    <li>• Backend: C#, .NET (grundläggande)</li>
+                    <li>• Praktisk erfarenhet: lager, logistik, teamwork</li>
+                </ul>
+            </aside>
+        </section>
+
+        <section id="about" class="fade-in delay-1">
+            <h3>Om mig</h3>
+            <p style="margin-top:0.8rem; font-size:0.95rem; color:#e5e7eb;">
+                Jag har bott i Sverige i flera år, jobbat inom lager och logistik och samtidigt studerat språk
+                och IT. Nu satsar jag på webbutveckling och vill kombinera min praktiska erfarenhet
+                med teknisk kompetens. Jag gillar tydlig kommunikation, struktur och att lära mig nya saker
+                steg för steg.
+            </p>
+        </section>
+
+        <section id="skills" class="fade-in delay-2">
+            <h3>Kompetens</h3>
+            <div class="grid-2" style="margin-top:1.2rem;">
+                <div class="card">
+                    <div class="card-title">Tekniska kunskaper</div>
+                    <div class="card-subtitle">Pågående och utvecklas hela tiden</div>
+                    <div class="skills-list">
+                        <div class="skill-pill">HTML5</div>
+                        <div class="skill-pill">CSS3</div>
+                        <div class="skill-pill">Responsiv design</div>
+                        <div class="skill-pill">Git & GitHub (grund)</div>
+                        <div class="skill-pill">C# / .NET (grund)</div>
+                        <div class="skill-pill">VS Code · Visual Studio</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Personliga styrkor</div>
+                    <div class="card-subtitle">Så här är jag i arbete</div>
+                    <p>
+                        • Noggrann och strukturerad<br>
+                        • Snabblärd och nyfiken<br>
+                        • Van att jobba i team och skift<br>
+                        • Bra på att förklara saker enkelt<br>
+                        • Van vid högt tempo och ansvar
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="fade-in delay-3">
+            <h3>Erfarenhet</h3>
+            <div class="grid-2" style="margin-top:1.2rem;">
+                <div class="card">
+                    <div class="card-title">Arbetslivserfarenhet</div>
+                    <div class="card-subtitle">Urval</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-title">Lagerarbetare / Orderplock</div>
+                            <div class="timeline-meta">Zalando · PostNord · Sverige</div>
+                            <div class="timeline-desc">
+                                Plock, pack, truck, kvalitet och arbete i högt tempo.
+                                Erfarenhet av skiftarbete, ansvar och teamwork.
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Egen företagare (tidigare)</div>
+                            <div class="timeline-meta">Service & kundkontakt</div>
+                            <div class="timeline-desc">
+                                Erfarenhet av kundservice, försäljning och att organisera vardagen
+                                i ett litet företag.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-title">Utbildning</div>
+                    <div class="card-subtitle">Pågående och avslutade studier</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-title">Webbutvecklare .NET</div>
+                            <div class="timeline-meta">YH-utbildning · Nackademin (pågående)</div>
+                            <div class="timeline-desc">
+                                Fokus på C#, .NET, databaser, frontend och systemutveckling.
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-title">Svenska som andraspråk 1–3</div>
+                            <div class="timeline-meta">Komvux · Sverige</div>
+                            <div class="timeline-desc">
+                                Fördjupade studier i svenska språket, skriftlig och muntlig kommunikation.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="fade-in delay-2">
+            <h3>Kontakt</h3>
+            <div class="contact-box" style="margin-top:1.2rem;">
+                <div class="contact-info">
+                    <div>
+                        <span>Namn</span><br>
+                        Vitaliia Sivakova
+                    </div>
+                    <div>
+                        <span>Ort</span><br>
+                        Stockholm, Sverige
+                    </div>
+                    <div>
+                        <span>E-post</span><br>
+                        Bondarenkovita35@gmail.com
+                    </div>
+                    <div>
+                        <span>LinkedIn / GitHub</span><br>
+                        linkedin.com/in/vitaliia-sivakova-865471187· https://github.com/bondarenkovita35-afk/mittjobb
+                    </div>
+                </div>
+                <div class="contact-actions">
+                    <a href="mailto:Bondarenkovita35@gmail.com" class="btn btn-primary">
+                        Skicka e-post
+                    </a>
+                    <a href="#top" class="btn btn-outline">
+                        Till toppen ↑
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            Byggd med HTML &amp; CSS – ett exempel på digitalt CV.
+        </footer>
+    </div>
+</body>
+
+</html>
